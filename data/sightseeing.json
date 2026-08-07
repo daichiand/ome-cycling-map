@@ -1,0 +1,31 @@
+[
+  {
+    "name": "御岳渓谷",
+    "lat": 35.8027,
+    "lng": 139.1804,
+    "category": "自然",
+    "image": "images/mitake.jpg",
+    "description": "多摩川沿いに広がる美しい渓谷。四季を通じて自然を楽しめる青梅を代表する観光スポットです。",
+    "cycling": "おすすめ"
+  },
+
+  {
+    "name": "釜の淵公園",
+    "lat": 35.7904,
+    "lng": 139.2548,
+    "category": "公園",
+    "image": "images/kamanofuchi.jpg",
+    "description": "多摩川沿いにある自然豊かな公園。サイクリング途中の休憩にも適しています。",
+    "cycling": "休憩向き"
+  },
+
+  {
+    "name": "青梅駅",
+    "lat": 35.7876,
+    "lng": 139.2756,
+    "category": "駅",
+    "image": "images/ome.jpg",
+    "description": "青梅観光の中心となる駅。周辺には昭和レトロな街並みがあります。",
+    "cycling": "スタート地点"
+  }
+]
