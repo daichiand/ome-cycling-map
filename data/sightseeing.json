@@ -4,9 +4,59 @@
     "lat": 35.8027,
     "lng": 139.1804,
     "category": "自然",
-    "image": "images/mitake.jpg",
-    "description": "多摩川沿いに広がる美しい渓谷。四季を通じて自然を楽しめる青梅を代表する観光スポットです。",
-    "cycling": "おすすめ"
+    "description": "多摩川沿いに広がる美しい渓谷。青梅を代表する景勝地で、散策やサイクリングに適しています。",
+    "cycling": "おすすめ",
+    "distance": "約20km",
+    "time": "約1時間",
+    "difficulty": "初心者向け",
+    "season": "春・秋",
+    "parking": "あり",
+    "toilet": "あり"
+  },
+
+  {
+    "name": "御岳山",
+    "lat": 35.7858,
+    "lng": 139.1495,
+    "category": "自然",
+    "description": "標高929mの山。武蔵御嶽神社や豊かな自然を楽しめる青梅の代表的観光地です。",
+    "cycling": "上級者向け",
+    "distance": "約30km",
+    "time": "半日",
+    "difficulty": "上級者向け",
+    "season": "春・秋",
+    "parking": "あり",
+    "toilet": "あり"
+  },
+
+  {
+    "name": "吉野梅郷",
+    "lat": 35.7878,
+    "lng": 139.2185,
+    "category": "自然",
+    "description": "梅の名所として知られる青梅を代表する観光エリアです。",
+    "cycling": "おすすめ",
+    "distance": "約15km",
+    "time": "約1時間",
+    "difficulty": "初心者向け",
+    "season": "春",
+    "parking": "あり",
+    "toilet": "あり"
+  },
+
+  {
+    "name": "梅の公園",
+    "lat": 35.7870,
+    "lng": 139.2180,
+    "category": "公園",
+    "description": "吉野梅郷エリアにある公園。季節の花を楽しめます。",
+    "cycling": "休憩向き",
+    "distance": "約15km",
+    "time": "30分",
+    "difficulty": "初心者向け",
+    "season": "春",
+    "parking": "あり",
+    "toilet": "あり"
   },
 
   {
@@ -14,18 +64,374 @@
     "lat": 35.7904,
     "lng": 139.2548,
     "category": "公園",
-    "image": "images/kamanofuchi.jpg",
-    "description": "多摩川沿いにある自然豊かな公園。サイクリング途中の休憩にも適しています。",
-    "cycling": "休憩向き"
+    "description": "多摩川沿いの自然豊かな公園。サイクリング途中の休憩場所として利用できます。",
+    "cycling": "休憩向き",
+    "distance": "約10km",
+    "time": "30分",
+    "difficulty": "初心者向け",
+    "season": "通年",
+    "parking": "あり",
+    "toilet": "あり"
+  },
+
+  {
+    "name": "吹上しょうぶ公園",
+    "lat": 35.7985,
+    "lng": 139.2700,
+    "category": "自然",
+    "description": "季節の花を楽しめる公園。静かな散策スポットです。",
+    "cycling": "休憩向き",
+    "distance": "約5km",
+    "time": "30分",
+    "difficulty": "初心者向け",
+    "season": "初夏",
+    "parking": "あり",
+    "toilet": "あり"
+  },
+
+  {
+    "name": "永山公園",
+    "lat": 35.7908,
+    "lng": 139.2600,
+    "category": "公園",
+    "description": "青梅市街を見渡せる高台の公園です。",
+    "cycling": "おすすめ",
+    "distance": "約5km",
+    "time": "30分",
+    "difficulty": "初心者向け",
+    "season": "通年",
+    "parking": "あり",
+    "toilet": "あり"
+  },
+
+  {
+    "name": "青梅丘陵ハイキングコース",
+    "lat": 35.8000,
+    "lng": 139.2700,
+    "category": "自然",
+    "description": "青梅市街を囲む自然豊かな丘陵エリアです。",
+    "cycling": "一部おすすめ",
+    "distance": "約10km",
+    "time": "2時間",
+    "difficulty": "中級者向け",
+    "season": "春・秋",
+    "parking": "周辺あり",
+    "toilet": "あり"
+  },
+
+  {
+    "name": "塩船観音寺",
+    "lat": 35.8135,
+    "lng": 139.2860,
+    "category": "歴史",
+    "description": "つつじの名所として有名な歴史ある寺院です。",
+    "cycling": "おすすめ",
+    "distance": "約8km",
+    "time": "1時間",
+    "difficulty": "初心者向け",
+    "season": "春",
+    "parking": "あり",
+    "toilet": "あり"
   },
 
   {
     "name": "青梅駅",
     "lat": 35.7876,
     "lng": 139.2756,
-    "category": "駅",
-    "image": "images/ome.jpg",
-    "description": "青梅観光の中心となる駅。周辺には昭和レトロな街並みがあります。",
-    "cycling": "スタート地点"
+    "category": "観光拠点",
+    "description": "昭和レトロな街並みが広がる青梅観光の中心地点です。",
+    "cycling": "スタート地点",
+    "distance": "0km",
+    "time": "出発地点",
+    "difficulty": "ー",
+    "season": "通年",
+    "parking": "周辺あり",
+    "toilet": "あり"
+  },
+
+  {
+    "name": "青梅市立郷土博物館",
+    "lat": 35.7895,
+    "lng": 139.2530,
+    "category": "文化",
+    "description": "青梅の歴史や文化を紹介する博物館です。",
+    "cycling": "立ち寄り向き",
+    "distance": "約10km",
+    "time": "1時間",
+    "difficulty": "初心者向け",
+    "season": "通年",
+    "parking": "あり",
+    "toilet": "あり"
+  },
+
+  {
+    "name": "旧稲葉家住宅",
+    "lat": 35.7900,
+    "lng": 139.2740,
+    "category": "歴史",
+    "description": "江戸時代の商家建築を見学できる歴史施設です。",
+    "cycling": "立ち寄り向き",
+    "distance": "約5km",
+    "time": "30分",
+    "difficulty": "初心者向け",
+    "season": "通年",
+    "parking": "周辺あり",
+    "toilet": "あり"
+  },
+
+  {
+    "name": "吉川英治記念館",
+    "lat": 35.7870,
+    "lng": 139.2070,
+    "category": "文化",
+    "description": "作家吉川英治の旧居を利用した記念館です。",
+    "cycling": "おすすめ",
+    "distance": "約15km",
+    "time": "1時間",
+    "difficulty": "初心者向け",
+    "season": "通年",
+    "parking": "あり",
+    "toilet": "あり"
+  },
+
+  {
+    "name": "昭和レトロ商品博物館",
+    "lat": 35.7900,
+    "lng": 139.2745,
+    "category": "文化",
+    "description": "昭和時代の商品や街並みを楽しめる観光施設です。",
+    "cycling": "立ち寄り向き",
+    "distance": "約5km",
+    "time": "30分",
+    "difficulty": "初心者向け",
+    "season": "通年",
+    "parking": "周辺あり",
+    "toilet": "あり"
   }
+  ,
+
+{
+  "name": "青梅鉄道公園",
+  "lat": 35.7935,
+  "lng": 139.2665,
+  "category": "文化",
+  "description": "鉄道車両の展示や鉄道文化を楽しめる施設。家族連れにも人気の観光スポットです。",
+  "cycling": "立ち寄り向き",
+  "distance": "約5km",
+  "time": "1時間",
+  "difficulty": "初心者向け",
+  "season": "通年",
+  "parking": "あり",
+  "toilet": "あり"
+},
+
+{
+  "name": "青梅市文化交流センター",
+  "lat": 35.7885,
+  "lng": 139.2750,
+  "category": "文化",
+  "description": "青梅駅近くの地域交流施設。観光情報収集や休憩場所として利用できます。",
+  "cycling": "休憩向き",
+  "distance": "0km",
+  "time": "30分",
+  "difficulty": "初心者向け",
+  "season": "通年",
+  "parking": "周辺あり",
+  "toilet": "あり"
+},
+
+{
+  "name": "河辺駅",
+  "lat": 35.7838,
+  "lng": 139.2855,
+  "category": "観光拠点",
+  "description": "青梅市東部の主要駅。温泉施設や商業施設がありサイクリング拠点になります。",
+  "cycling": "スタート地点",
+  "distance": "0km",
+  "time": "出発地点",
+  "difficulty": "ー",
+  "season": "通年",
+  "parking": "あり",
+  "toilet": "あり"
+},
+
+{
+  "name": "東青梅駅",
+  "lat": 35.7900,
+  "lng": 139.2730,
+  "category": "観光拠点",
+  "description": "青梅市中心部へのアクセス地点。市街地観光の拠点になります。",
+  "cycling": "立ち寄り向き",
+  "distance": "0km",
+  "time": "休憩地点",
+  "difficulty": "初心者向け",
+  "season": "通年",
+  "parking": "周辺あり",
+  "toilet": "あり"
+},
+
+{
+  "name": "沢井駅",
+  "lat": 35.8035,
+  "lng": 139.1985,
+  "category": "観光拠点",
+  "description": "御岳渓谷周辺へのアクセス駅。多摩川沿い観光の拠点です。",
+  "cycling": "おすすめ",
+  "distance": "約15km",
+  "time": "休憩地点",
+  "difficulty": "初心者向け",
+  "season": "通年",
+  "parking": "周辺あり",
+  "toilet": "あり"
+},
+
+{
+  "name": "御嶽駅",
+  "lat": 35.8020,
+  "lng": 139.1830,
+  "category": "観光拠点",
+  "description": "御岳渓谷や御岳山観光の玄関口となる駅です。",
+  "cycling": "おすすめ",
+  "distance": "約20km",
+  "time": "休憩地点",
+  "difficulty": "初心者向け",
+  "season": "通年",
+  "parking": "あり",
+  "toilet": "あり"
+},
+
+{
+  "name": "日向和田駅",
+  "lat": 35.7870,
+  "lng": 139.2250,
+  "category": "観光拠点",
+  "description": "吉野梅郷エリアへのアクセス駅です。",
+  "cycling": "立ち寄り向き",
+  "distance": "約10km",
+  "time": "休憩地点",
+  "difficulty": "初心者向け",
+  "season": "春",
+  "parking": "周辺あり",
+  "toilet": "あり"
+},
+
+{
+  "name": "軍畑駅",
+  "lat": 35.8060,
+  "lng": 139.2150,
+  "category": "景観",
+  "description": "多摩川沿いの自然を感じられる駅周辺エリアです。",
+  "cycling": "おすすめ",
+  "distance": "約20km",
+  "time": "30分",
+  "difficulty": "初心者向け",
+  "season": "春・秋",
+  "parking": "周辺あり",
+  "toilet": "あり"
+},
+
+{
+  "name": "多摩川沿い遊歩道",
+  "lat": 35.7980,
+  "lng": 139.2300,
+  "category": "サイクリング",
+  "description": "青梅市内を流れる多摩川沿いの自然豊かなルートです。",
+  "cycling": "非常におすすめ",
+  "distance": "約20km",
+  "time": "2時間",
+  "difficulty": "初心者向け",
+  "season": "通年",
+  "parking": "周辺あり",
+  "toilet": "あり"
+},
+
+{
+  "name": "奥多摩橋周辺",
+  "lat": 35.7985,
+  "lng": 139.2070,
+  "category": "景観",
+  "description": "多摩川の景色を楽しめる橋周辺のビュースポットです。",
+  "cycling": "おすすめ",
+  "distance": "約20km",
+  "time": "30分",
+  "difficulty": "初心者向け",
+  "season": "春・秋",
+  "parking": "周辺あり",
+  "toilet": "あり"
+},
+
+{
+  "name": "岩蔵温泉",
+  "lat": 35.8200,
+  "lng": 139.2850,
+  "category": "温泉",
+  "description": "青梅市内にある歴史ある温泉エリアです。",
+  "cycling": "休憩向き",
+  "distance": "約15km",
+  "time": "1時間",
+  "difficulty": "初心者向け",
+  "season": "通年",
+  "parking": "あり",
+  "toilet": "あり"
+},
+
+{
+  "name": "成木地区",
+  "lat": 35.8350,
+  "lng": 139.2600,
+  "category": "自然",
+  "description": "山間部の自然豊かな地域。静かなサイクリングに向いています。",
+  "cycling": "中級者向け",
+  "distance": "約30km",
+  "time": "半日",
+  "difficulty": "中級者向け",
+  "season": "春・秋",
+  "parking": "あり",
+  "toilet": "あり"
+},
+
+{
+  "name": "小曾木地区",
+  "lat": 35.8200,
+  "lng": 139.3000,
+  "category": "自然",
+  "description": "里山の風景が残る青梅北部の自然地域です。",
+  "cycling": "中級者向け",
+  "distance": "約25km",
+  "time": "半日",
+  "difficulty": "中級者向け",
+  "season": "春・秋",
+  "parking": "あり",
+  "toilet": "あり"
+},
+
+{
+  "name": "長淵丘陵",
+  "lat": 35.7800,
+  "lng": 139.2500,
+  "category": "自然",
+  "description": "青梅市南部に広がる丘陵地帯。自然散策が楽しめます。",
+  "cycling": "中級者向け",
+  "distance": "約15km",
+  "time": "2時間",
+  "difficulty": "中級者向け",
+  "season": "春・秋",
+  "parking": "周辺あり",
+  "toilet": "あり"
+},
+
+{
+  "name": "青梅市総合体育館周辺",
+  "lat": 35.7900,
+  "lng": 139.2600,
+  "category": "休憩",
+  "description": "市街地側の休憩ポイントとして利用できます。",
+  "cycling": "休憩向き",
+  "distance": "約5km",
+  "time": "30分",
+  "difficulty": "初心者向け",
+  "season": "通年",
+  "parking": "あり",
+  "toilet": "あり"
+}
 ]

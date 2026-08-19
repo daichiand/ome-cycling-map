@@ -2,34 +2,242 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>青梅法人会エリア サイクリング・観光マップ</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        青梅法人会エリア サイクリング・観光マップ
+    </title>
+
 
     <!-- Leaflet 地図ライブラリ -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet/dist/leaflet.css"
+    >
+
 
     <!-- 自作CSS -->
-    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
-<header>
-    <h1>🚴 青梅法人会エリア<br>サイクリング・観光マップ</h1>
-</header>
+
+    <!-- =========================
+         ヘッダー
+    ========================== -->
+
+    <header>
+
+        <h1>
+            🚴 青梅サイクリング・観光マップ
+        </h1>
+
+        <p>
+            青梅市の観光スポットと
+            サイクリングコースを探せます
+        </p>
+
+    </header>
 
 
-<div id="map"></div>
+    <!-- =========================
+         カテゴリーフィルター
+    ========================== -->
+
+    <div id="filter">
+
+        <h3>
+            📍 観光スポット
+        </h3>
 
 
-<!-- Leaflet -->
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <label>
 
-<!-- 自作JavaScript -->
-<script src="script.js"></script>
+            <input
+                type="checkbox"
+                value="自然"
+                checked
+            >
+
+            自然
+
+        </label>
+
+
+        <label>
+
+            <input
+                type="checkbox"
+                value="公園"
+                checked
+            >
+
+            公園
+
+        </label>
+
+
+        <label>
+
+            <input
+                type="checkbox"
+                value="歴史"
+                checked
+            >
+
+            歴史
+
+        </label>
+
+
+        <label>
+
+            <input
+                type="checkbox"
+                value="文化"
+                checked
+            >
+
+            文化
+
+        </label>
+
+
+        <label>
+
+            <input
+                type="checkbox"
+                value="観光拠点"
+                checked
+            >
+
+            観光拠点
+
+        </label>
+
+
+        <label>
+
+            <input
+                type="checkbox"
+                value="温泉"
+                checked
+            >
+
+            温泉
+
+        </label>
+
+
+        <label>
+
+            <input
+                type="checkbox"
+                value="サイクリング"
+                checked
+            >
+
+            サイクリング
+
+        </label>
+
+
+        <label>
+
+            <input
+                type="checkbox"
+                value="休憩"
+                checked
+            >
+
+            休憩
+
+        </label>
+
+    </div>
+
+
+    <!-- =========================
+         サイクリングコース
+    ========================== -->
+
+    <div id="course-filter">
+
+        <h3>
+            🚴 サイクリングコース
+        </h3>
+
+
+        <label>
+
+            <input
+                type="checkbox"
+                id="course-beginner"
+            >
+
+            初心者コース
+
+        </label>
+
+
+        <label>
+
+            <input
+                type="checkbox"
+                id="course-mitake"
+            >
+
+            御岳渓谷コース
+
+        </label>
+
+
+        <!-- コース詳細 -->
+
+        <div id="course-info"></div>
+
+    </div>
+
+
+    <!-- =========================
+         地図
+    ========================== -->
+
+    <div id="map"></div>
+
+
+    <!-- =========================
+         Leaflet JavaScript
+    ========================== -->
+
+    <script
+        src="https://unpkg.com/leaflet/dist/leaflet.js"
+    ></script>
+
+
+    <!-- =========================
+         自作JavaScript
+    ========================== -->
+
+    <script
+        src="script.js"
+    ></script>
 
 
 </body>
+
 </html>
