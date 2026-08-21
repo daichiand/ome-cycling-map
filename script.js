@@ -378,6 +378,10 @@ async function getCyclingRoute(
 // 観光スポットまでのルート検索
 // =========================
 
+// =========================
+// 観光スポットまでのルート検索
+// =========================
+
 async function routeToSpot(
     endLat,
     endLng
@@ -426,7 +430,41 @@ async function routeToSpot(
     );
 
 
+    // =========================
+    // 距離・所要時間を取得
+    // =========================
+
+    const summary =
+        data.features[0].properties.summary;
+
+
+    // 距離（m → km）
+    const distance =
+        (summary.distance / 1000).toFixed(1);
+
+
+    // 時間（秒 → 分）
+    const time =
+        Math.round(summary.duration / 60);
+
+
+    console.log(
+        "距離：",
+        distance,
+        "km"
+    );
+
+    console.log(
+        "所要時間：",
+        time,
+        "分"
+    );
+
+
+    // =========================
     // 既存のルートを削除
+    // =========================
+
     if (routeLayer) {
 
         map.removeLayer(
@@ -436,7 +474,10 @@ async function routeToSpot(
     }
 
 
-    // GeoJSONとしてルートを表示
+    // =========================
+    // ルートを地図に表示
+    // =========================
+
     routeLayer =
         L.geoJSON(
             data,
@@ -448,14 +489,30 @@ async function routeToSpot(
         ).addTo(map);
 
 
-    // ルート全体が見えるようにする
+    // =========================
+    // ルート全体を表示
+    // =========================
+
     map.fitBounds(
         routeLayer.getBounds()
     );
 
+
+    // =========================
+    // ルート情報を表示
+    // =========================
+
+    alert(
+        "🚴 ルート検索結果\n\n" +
+        "📏 距離：" +
+        distance +
+        " km\n" +
+        "⏱ 所要時間：約" +
+        time +
+        "分"
+    );
+
 }
-
-
 // =========================
 // サイクリングコースデータ
 // =========================
