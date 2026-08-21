@@ -566,3 +566,87 @@ document
 
     }
 );
+// =========================
+// Cloudflare API
+// =========================
+
+const ROUTE_API =
+    "https://nyannyan.mikankinako04.workers.dev/";
+
+
+// =========================
+// 自転車ルート検索
+// =========================
+
+async function getCyclingRoute(
+    startLat,
+    startLng,
+    endLat,
+    endLng
+) {
+
+    try {
+
+        const response = await fetch(
+            ROUTE_API,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    coordinates: [
+                        [
+                            startLng,
+                            startLat
+                        ],
+                        [
+                            endLng,
+                            endLat
+                        ]
+                    ]
+
+                })
+
+            }
+        );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "ルート検索に失敗しました"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "ルート取得成功",
+            data
+        );
+
+
+        return data;
+
+
+    } catch (error) {
+
+        console.error(
+            "ルート検索エラー",
+            error
+        );
+
+        return null;
+
+    }
+
+}
