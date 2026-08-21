@@ -28,6 +28,13 @@ L.tileLayer(
 // 現在地表示
 // =========================
 
+// =========================
+// 現在地表示
+// =========================
+
+let currentLocation = null;
+
+
 if (navigator.geolocation) {
 
     navigator.geolocation.getCurrentPosition(
@@ -37,15 +44,30 @@ if (navigator.geolocation) {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
 
+            // 現在地を保存
+            currentLocation = {
+                lat: lat,
+                lng: lng
+            };
+
+            console.log(
+                "現在地：",
+                currentLocation
+            );
+
+
             L.marker([lat, lng])
                 .addTo(map)
                 .bindPopup("現在地");
 
         },
 
-        function() {
+        function(error) {
 
-            console.log("現在地取得失敗");
+            console.log(
+                "現在地取得失敗",
+                error
+            );
 
         }
 
