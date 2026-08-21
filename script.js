@@ -25,15 +25,10 @@ L.tileLayer(
 
 
 // =========================
-// 現在地表示
-// =========================
-
-// =========================
-// 現在地表示
+// 現在地表示・保存
 // =========================
 
 let currentLocation = null;
-
 
 if (navigator.geolocation) {
 
@@ -55,7 +50,7 @@ if (navigator.geolocation) {
                 currentLocation
             );
 
-
+            // 現在地を地図に表示
             L.marker([lat, lng])
                 .addTo(map)
                 .bindPopup("現在地");
@@ -92,6 +87,21 @@ let courseLayers = {
     beginner: null,
     mitake: null
 };
+
+
+// =========================
+// ルート管理
+// =========================
+
+let routeLayer = null;
+
+
+// =========================
+// Cloudflare API
+// =========================
+
+const ROUTE_API =
+    "https://nyannyan.mikankinako04.workers.dev/";
 
 
 // =========================
@@ -208,6 +218,20 @@ function displaySpots(spots) {
                     ${spot.toilet}
                 </p>
 
+                <hr>
+
+                <button
+                    onclick="routeToSpot(${spot.lat}, ${spot.lng})"
+                    style="
+                        width: 100%;
+                        padding: 10px;
+                        font-size: 16px;
+                        cursor: pointer;
+                    "
+                >
+                    🚴 ここまでルート検索
+                </button>
+
             </div>
             `
 
@@ -266,6 +290,170 @@ document
     );
 
 });
+
+
+// =========================
+// Cloudflare API
+// 自転車ルート取得
+// =========================
+
+async function getCyclingRoute(
+    startLat,
+    startLng,
+    endLat,
+    endLng
+) {
+
+    try {
+
+        const response = await fetch(
+            ROUTE_API,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    coordinates: [
+
+                        [
+                            startLng,
+                            startLat
+                        ],
+
+                        [
+                            endLng,
+                            endLat
+                        ]
+
+                    ]
+
+                })
+
+            }
+        );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "ルート検索に失敗しました"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "ルート取得成功",
+            data
+        );
+
+
+        return data;
+
+
+    } catch (error) {
+
+        console.error(
+            "ルート検索エラー",
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+// =========================
+// 観光スポットまでのルート検索
+// =========================
+
+async function routeToSpot(
+    endLat,
+    endLng
+) {
+
+    // 現在地が取得できているか確認
+    if (!currentLocation) {
+
+        alert(
+            "現在地を取得できていません。\n位置情報を許可してください。"
+        );
+
+        return;
+
+    }
+
+
+    // ルート検索開始
+    const data =
+        await getCyclingRoute(
+
+            currentLocation.lat,
+            currentLocation.lng,
+
+            endLat,
+            endLng
+
+        );
+
+
+    // 取得失敗
+    if (!data) {
+
+        alert(
+            "ルートを取得できませんでした。"
+        );
+
+        return;
+
+    }
+
+
+    console.log(
+        "取得したルート：",
+        data
+    );
+
+
+    // 既存のルートを削除
+    if (routeLayer) {
+
+        map.removeLayer(
+            routeLayer
+        );
+
+    }
+
+
+    // GeoJSONとしてルートを表示
+    routeLayer =
+        L.geoJSON(
+            data,
+            {
+                style: {
+                    weight: 6
+                }
+            }
+        ).addTo(map);
+
+
+    // ルート全体が見えるようにする
+    map.fitBounds(
+        routeLayer.getBounds()
+    );
+
+}
 
 
 // =========================
@@ -588,87 +776,3 @@ document
 
     }
 );
-// =========================
-// Cloudflare API
-// =========================
-
-const ROUTE_API =
-    "https://nyannyan.mikankinako04.workers.dev/";
-
-
-// =========================
-// 自転車ルート検索
-// =========================
-
-async function getCyclingRoute(
-    startLat,
-    startLng,
-    endLat,
-    endLng
-) {
-
-    try {
-
-        const response = await fetch(
-            ROUTE_API,
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
-
-                body: JSON.stringify({
-
-                    coordinates: [
-                        [
-                            startLng,
-                            startLat
-                        ],
-                        [
-                            endLng,
-                            endLat
-                        ]
-                    ]
-
-                })
-
-            }
-        );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "ルート検索に失敗しました"
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        console.log(
-            "ルート取得成功",
-            data
-        );
-
-
-        return data;
-
-
-    } catch (error) {
-
-        console.error(
-            "ルート検索エラー",
-            error
-        );
-
-        return null;
-
-    }
-
-}
