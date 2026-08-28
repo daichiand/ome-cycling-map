@@ -2,6 +2,76 @@
  * 「スポット管理」シートの公開行だけを、車観光マップ向けJSONとして返します。
  * このコードは、新しいGoogle Sheetsで [拡張機能] > [Apps Script] に貼り付けて使います。
  */
+function onOpen() {
+  SpreadsheetApp.getUi()
+    .createMenu('地図管理')
+    .addItem('住所から座標を取得', 'geocodeMarkedRows')
+    .addToUi();
+}
+
+/** 初回設定用: 座標取得列と入力候補を整えます。 */
+function setupGeocodeColumn() {
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const spotSheet = spreadsheet.getSheetByName('スポット管理');
+  const optionSheet = spreadsheet.getSheetByName('選択肢');
+  if (!spotSheet || !optionSheet) throw new Error('スポット管理または選択肢シートが見つかりません。');
+  spotSheet.getRange(1, 21).setValue('座標取得');
+  optionSheet.getRange(1, 4, 5, 1).setValues([
+    ['座標取得'], ['取得'], ['完了'], ['該当なし'], ['住所要確認']
+  ]);
+}
+
+/**
+ * 「座標取得」列に「取得」と入力した行だけ、住所から緯度・経度を入力します。
+ * 実行後は結果を「完了」「該当なし」「住所要確認」として同じ列へ記録します。
+ */
+function geocodeMarkedRows() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('スポット管理');
+  if (!sheet) throw new Error('スポット管理シートが見つかりません。');
+  const values = sheet.getDataRange().getDisplayValues();
+  const headerIndex = values.findIndex((row) => row[0] === 'spot_id');
+  if (headerIndex < 0) throw new Error('ヘッダー行が見つかりません。');
+  const headers = values[headerIndex];
+  const indexOf = (name) => headers.indexOf(name);
+  const addressIndex = indexOf('住所');
+  const latIndex = indexOf('緯度');
+  const lngIndex = indexOf('経度');
+  const requestIndex = indexOf('座標取得');
+  if ([addressIndex, latIndex, lngIndex, requestIndex].some((index) => index < 0)) {
+    throw new Error('住所・緯度・経度・座標取得の列が必要です。');
+  }
+
+  let completed = 0;
+  let failed = 0;
+  values.slice(headerIndex + 1).forEach((row, offset) => {
+    if (row[requestIndex] !== '取得') return;
+    const rowNumber = headerIndex + offset + 2;
+    const address = row[addressIndex].trim();
+    const statusCell = sheet.getRange(rowNumber, requestIndex + 1);
+    if (!address || address === '要確認') {
+      statusCell.setValue('住所要確認');
+      failed += 1;
+      return;
+    }
+    const results = Maps.newGeocoder().setLanguage('ja').geocode(address);
+    if (!results || !results.length) {
+      statusCell.setValue('該当なし');
+      failed += 1;
+      return;
+    }
+    const location = results[0].geometry.location;
+    sheet.getRange(rowNumber, latIndex + 1).setValue(location.lat);
+    sheet.getRange(rowNumber, lngIndex + 1).setValue(location.lng);
+    statusCell.setValue('完了');
+    completed += 1;
+  });
+  SpreadsheetApp.getActiveSpreadsheet().toast(
+    `成功: ${completed}件 / 確認が必要: ${failed}件`,
+    '座標取得が完了しました',
+    8
+  );
+}
+
 function doGet() {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('スポット管理');
   if (!sheet) return json({ error: 'スポット管理シートが見つかりません。' });
