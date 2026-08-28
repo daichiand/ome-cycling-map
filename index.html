@@ -1,243 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-
-<head>
-
+  <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>
-        青梅法人会エリア サイクリング・観光マップ
-    </title>
-
-
-    <!-- Leaflet 地図ライブラリ -->
-
-    <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet/dist/leaflet.css"
-    >
-
-
-    <!-- 自作CSS -->
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
-</head>
-
-
-<body>
-
-
-    <!-- =========================
-         ヘッダー
-    ========================== -->
-
-    <header>
-
-        <h1>
-            🚴 青梅サイクリング・観光マップ
-        </h1>
-
-        <p>
-            青梅市の観光スポットと
-            サイクリングコースを探せます
-        </p>
-
-    </header>
-
-
-    <!-- =========================
-         カテゴリーフィルター
-    ========================== -->
-
-    <div id="filter">
-
-        <h3>
-            📍 観光スポット
-        </h3>
-
-
-        <label>
-
-            <input
-                type="checkbox"
-                value="自然"
-                checked
-            >
-
-            自然
-
-        </label>
-
-
-        <label>
-
-            <input
-                type="checkbox"
-                value="公園"
-                checked
-            >
-
-            公園
-
-        </label>
-
-
-        <label>
-
-            <input
-                type="checkbox"
-                value="歴史"
-                checked
-            >
-
-            歴史
-
-        </label>
-
-
-        <label>
-
-            <input
-                type="checkbox"
-                value="文化"
-                checked
-            >
-
-            文化
-
-        </label>
-
-
-        <label>
-
-            <input
-                type="checkbox"
-                value="観光拠点"
-                checked
-            >
-
-            観光拠点
-
-        </label>
-
-
-        <label>
-
-            <input
-                type="checkbox"
-                value="温泉"
-                checked
-            >
-
-            温泉
-
-        </label>
-
-
-        <label>
-
-            <input
-                type="checkbox"
-                value="サイクリング"
-                checked
-            >
-
-            サイクリング
-
-        </label>
-
-
-        <label>
-
-            <input
-                type="checkbox"
-                value="休憩"
-                checked
-            >
-
-            休憩
-
-        </label>
-
-    </div>
-
-
-    <!-- =========================
-         サイクリングコース
-    ========================== -->
-
-    <div id="course-filter">
-
-        <h3>
-            🚴 サイクリングコース
-        </h3>
-
-
-        <label>
-
-            <input
-                type="checkbox"
-                id="course-beginner"
-            >
-
-            初心者コース
-
-        </label>
-
-
-        <label>
-
-            <input
-                type="checkbox"
-                id="course-mitake"
-            >
-
-            御岳渓谷コース
-
-        </label>
-
-
-        <!-- コース詳細 -->
-
-        <div id="course-info"></div>
-
-    </div>
-
-
-    <!-- =========================
-         地図
-    ========================== -->
-
-    <div id="map"></div>
-
-
-    <!-- =========================
-         Leaflet JavaScript
-    ========================== -->
-
-    <script
-        src="https://unpkg.com/leaflet/dist/leaflet.js"
-    ></script>
-
-
-    <!-- =========================
-         自作JavaScript
-    ========================== -->
-
-    <script
-        src="script.js"
-    ></script>
-
-
-</body>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0f5b4b">
+    <meta name="description" content="青梅市を車で観光する人のための観光スポットマップ">
+    <title>青梅市 車観光マップ</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header class="site-header"><div><p class="eyebrow">OME CITY CAR TOURISM</p><h1>青梅市 車観光マップ</h1><p class="header-copy">駐車場・車でのアクセスを確認して、行きたい場所を見つけよう。</p></div></header>
+    <main class="app-shell">
+      <section class="map-section" aria-label="観光スポット地図"><div id="map"></div><div class="map-actions"><button id="locate-button" class="secondary-button" type="button">現在地を表示</button><p id="location-status" class="location-status" role="status">現在地はまだ取得していません。</p></div></section>
+      <section class="search-section" aria-label="スポットを探す">
+        <div class="section-heading"><div><p class="eyebrow">FIND A SPOT</p><h2>行きたい場所を探す</h2></div><p id="result-count" class="result-count" aria-live="polite"></p></div>
+        <label class="search-label" for="spot-search">スポット名・カテゴリ・タグで検索</label><input id="spot-search" class="search-input" type="search" autocomplete="off" placeholder="例：温泉、自然、家族">
+        <div id="category-filters" class="category-filters" aria-label="カテゴリで絞り込む"></div><p id="data-status" class="data-status" role="status"></p><div id="spot-list" class="spot-list" aria-live="polite"></div>
+      </section>
+    </main>
+    <dialog id="spot-detail" class="spot-detail" aria-labelledby="detail-title"><div class="detail-header"><div><p id="detail-category" class="detail-category"></p><h2 id="detail-title"></h2></div><button id="detail-close" class="icon-button" type="button" aria-label="詳細を閉じる">×</button></div><p id="detail-sample" class="sample-note" hidden>サンプル情報です。公開前に実在情報へ置き換えてください。</p><p id="detail-description" class="detail-description"></p><dl id="detail-fields" class="detail-fields"></dl><div class="detail-actions"><a id="detail-route" class="primary-button" target="_blank" rel="noopener">Google マップで車ルートを開く</a><a id="detail-website" class="text-link" target="_blank" rel="noopener" hidden>公式サイトを見る</a></div></dialog>
+    <template id="empty-state-template"><div class="empty-state"><h3>該当するスポットがありません</h3><p>キーワードやカテゴリを変えて、もう一度探してください。</p></div></template>
+    <script src="20260828_map-config.js"></script><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="script.js"></script>
+  </body>
 </html>
