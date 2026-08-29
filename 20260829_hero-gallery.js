@@ -6,9 +6,21 @@
   slideshow.className = "hero-slideshow";
   slideshow.setAttribute("aria-hidden", "true");
   header.prepend(slideshow);
-  const credits = document.createElement("details");
+  const credits = document.createElement("section");
   credits.className = "photo-credits";
-  credits.innerHTML = "<summary>背景写真の出典</summary><ul></ul>";
+  credits.innerHTML = "<button class=\"photo-credits-trigger\" type=\"button\" aria-expanded=\"false\" aria-controls=\"photo-credits-panel\">背景写真の出典</button><div class=\"photo-credits-panel\" id=\"photo-credits-panel\" hidden><div class=\"photo-credits-panel-heading\"><strong>背景写真の出典</strong><button class=\"photo-credits-close\" type=\"button\">閉じる</button></div><ul></ul></div>";
+  const creditsTrigger = credits.querySelector(".photo-credits-trigger");
+  const creditsPanel = credits.querySelector(".photo-credits-panel");
+  creditsTrigger.addEventListener("click", () => {
+    const isOpening = creditsPanel.hidden;
+    creditsPanel.hidden = !isOpening;
+    creditsTrigger.setAttribute("aria-expanded", String(isOpening));
+  });
+  credits.querySelector(".photo-credits-close").addEventListener("click", () => {
+    creditsPanel.hidden = true;
+    creditsTrigger.setAttribute("aria-expanded", "false");
+    creditsTrigger.focus();
+  });
   header.append(credits);
   const localPath = (file) => `assets/20260829_hero-photos/${file}`;
   const cleanText = (value) => String(value || "Wikimedia Commons").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
@@ -36,25 +48,15 @@
         item.append(link);
         creditList.append(item);
       });
-      let index = 0;
-      let current = null;
-      const show = () => {
-        const photo = photos[index];
-        const image = document.createElement("div");
-        image.className = "hero-image";
-        image.style.backgroundImage = `url("${localPath(photo.file)}")`;
-        slideshow.append(image);
-        requestAnimationFrame(() => image.classList.add("is-active"));
-        const outgoing = current;
-        if (outgoing) {
-          outgoing.classList.remove("is-active");
-          window.setTimeout(() => outgoing.remove(), 1500);
-        }
-        current = image;
-        index = (index + 1) % photos.length;
-      };
-      show();
-      window.setInterval(show, 7000);
+      const film = document.createElement("div");
+      film.className = "hero-film";
+      [...photos, ...photos].forEach((photo) => {
+        const frame = document.createElement("div");
+        frame.className = "hero-frame";
+        frame.style.backgroundImage = `url("${localPath(photo.file)}")`;
+        film.append(frame);
+      });
+      slideshow.append(film);
     } catch (_) {}
   }
   initialise();
