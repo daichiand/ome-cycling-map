@@ -1,0 +1,8 @@
+name = "ome-car-tourism-route"
+main = "20260829_cloudflare-route-worker.js"
+compatibility_date = "2026-08-29"
+
+[vars]
+ALLOWED_ORIGIN = "https://daichiand.github.io"
+
+# ORS_API_KEY はここへ書かず、Cloudflare の Secret として登録します。
