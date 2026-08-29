@@ -8,6 +8,7 @@
     <title>青梅市 車観光マップ</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <link rel="stylesheet" href="20260829_style.css">
+    <link rel="stylesheet" href="20260829_fixed-layout.css">
   </head>
   <body>
     <header class="site-header"><div class="hero-content"><div><p class="eyebrow">OME CITY CAR TOURISM</p><h1>青梅市 車観光マップ</h1><p class="header-copy">駐車場・車でのアクセスを確認して、行きたい場所を見つけよう。</p></div><p class="hero-badge">車でめぐる、青梅の休日</p></div></header>
@@ -16,7 +17,7 @@
       <section class="search-section" aria-label="スポットを探す">
         <div class="section-heading"><div><p class="eyebrow">FIND A SPOT</p><h2>行きたい場所を探す</h2></div><p id="result-count" class="result-count" aria-live="polite"></p></div>
         <label class="search-label" for="spot-search">スポット名・カテゴリ・タグで検索</label><input id="spot-search" class="search-input" type="search" autocomplete="off" placeholder="例：温泉、自然、家族">
-        <div id="category-filters" class="category-filters" aria-label="カテゴリで絞り込む"></div><p id="data-status" class="data-status" role="status"></p><div id="spot-list" class="spot-list" aria-live="polite"></div>
+        <div id="category-filters" class="category-filters" aria-label="カテゴリで絞り込む"></div><p id="data-status" class="data-status" role="status"></p><div id="spot-list" class="spot-list" aria-live="polite" role="region" aria-label="行きたい場所の一覧" tabindex="0"></div>
       </section>
     </main>
     <dialog id="spot-detail" class="spot-detail" aria-labelledby="detail-title"><div class="detail-header"><div><p id="detail-category" class="detail-category"></p><h2 id="detail-title"></h2></div><button id="detail-close" class="icon-button" type="button" aria-label="詳細を閉じる">×</button></div><p id="detail-sample" class="sample-note" hidden>サンプル情報です。公開前に実在情報へ置き換えてください。</p><p id="detail-description" class="detail-description"></p><dl id="detail-fields" class="detail-fields"></dl><div class="detail-actions"><button id="detail-route-in-app" class="primary-button" type="button">ここまで車ルートを表示</button><a id="detail-route" class="text-link" target="_blank" rel="noopener">Google マップで開く</a><a id="detail-website" class="text-link" target="_blank" rel="noopener" hidden>公式サイトを見る</a></div></dialog>
