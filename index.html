@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <link rel="stylesheet" href="20260829_style.css">
     <link rel="stylesheet" href="20260829_fixed-layout.css">
-    <link rel="stylesheet" href="20260829_hero-ui.css">
+    <link rel="stylesheet" href="20260829_hero-ui.css?v=20260830d">
   </head>
   <body>
     <header class="site-header"><div class="hero-content"><div><p class="eyebrow">OME CITY CAR TOURISM</p><h1>青梅市 車観光マップ</h1><p class="header-copy">駐車場・車でのアクセスを確認して、行きたい場所を見つけよう。</p></div><p class="hero-badge">車でめぐる、青梅の休日</p></div></header>
-    <main class="app-shell">
+    <nav class="mobile-view-switch" aria-label="表示する内容を選ぶ"><button id="mobile-map-view" type="button" aria-pressed="true">地図</button><button id="mobile-spots-view" type="button" aria-pressed="false">行きたい場所</button></nav>
+    <main class="app-shell mobile-show-map">
       <section class="map-section" aria-label="観光スポット地図"><div id="map"></div><div class="map-actions"><button id="locate-button" class="secondary-button" type="button">現在地を表示</button><p id="location-status" class="location-status" role="status">現在地はまだ取得していません。</p></div><section class="route-panel" aria-labelledby="route-title"><div class="route-panel-heading"><div><p class="eyebrow">DRIVE ROUTE</p><h2 id="route-title">車ルートをつくる</h2></div><div><span id="route-state" class="route-state">準備中</span><button id="route-panel-toggle" class="route-panel-toggle" type="button" aria-expanded="true" aria-controls="route-start">たたむ</button></div></div><label for="route-start">出発地</label><select id="route-start" class="route-select"></select><label for="route-via">経由地</label><div class="via-add"><select id="route-via" class="route-select"></select><button id="route-via-add" type="button">追加</button></div><ol id="route-via-list" class="via-list"></ol><label for="route-end">目的地</label><select id="route-end" class="route-select"></select><button id="route-search" class="route-button" type="button">車ルートを表示</button><p id="route-summary" class="route-summary" role="status">現在地またはスポットを選択できます。</p></section></section>
       <section class="search-section" aria-label="スポットを探す">
         <div class="section-heading"><div><p class="eyebrow">FIND A SPOT</p><h2>行きたい場所を探す</h2></div><p id="result-count" class="result-count" aria-live="polite"></p></div>
