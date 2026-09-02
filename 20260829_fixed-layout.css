@@ -1,7 +1,7 @@
 /* 画面全体は固定し、スポット一覧だけをスクロールする。 */
 html,body{height:100%}
 body{display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden}
-.hero-content,.app-shell{width:100%}
+.hero-content,.app-shell{width:100%;max-width:none}
 .app-shell{min-height:0;height:100%}
 .map-section{min-height:0}
 .search-section{display:flex;min-height:0;overflow:hidden;flex-direction:column}
